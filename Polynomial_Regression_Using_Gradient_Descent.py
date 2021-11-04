@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import linalg
 
 def Generate_Points(start , end , nbr_points , coefficient , noise ):
     
@@ -40,7 +39,12 @@ class Polynomial_Reression :
         hypothesis = np.dot(X , theta)
         return hypothesis
     
-    def fit(self , order = 2 , epsilon = 10e-3 , nbr_iterations = 100 , learning_rate = 10e-3):
+    def compute_cost(self , X , theta):
+        hypothesis = self.compute_hypothesis(X, theta)
+        cost = (1/len(self.y)) * np.sum((self.y - hypothesis) ** 2 )
+        return cost
+    
+    def fit(self , order = 2 , epsilon = 10e-3 , nbr_iterations = 50 , learning_rate = 10e-3):
         
         self.order = order
         self.nbr_iterations = nbr_iterations
@@ -50,10 +54,31 @@ class Polynomial_Reression :
         theta = np.random.randn(order+1)
         costs = []
         
-        
-        
-        pass
+        for i in range(self.nbr_iterations):
             
+            # Computing The Hypothesis for the current params (theta)
+            hypothesis = self.compute_hypothesis(X, theta)
+            
+            # Computing The Errors
+            errors =  self.y - hypothesis
+            
+            # Update Theta Using Gradient Descent 
+            n_samples = len(self.y)
+            d_J = np.dot(X.T , errors)
+            theta -= learning_rate * (1/n_samples) * d_J
+            
+            # Computing The Cost
+            cost = self.compute_cost(X, theta)
+            costs.append(cost)            
+            
+            # if the current cost less than epsilon stop the gradient Descent
+            if cost < epsilon :
+                break
+        
+        self.costs = costs
+        self.X = X
+        self.theta = theta    
+        
     def plot_line(self):
         plt.figure()
         plt.scatter(self.x , self.y , color = 'blue')
@@ -64,8 +89,18 @@ class Polynomial_Reression :
         plt.title("Polynomial Regression Using Gradient Descent")
         plt.show()
         
+    def plot_cost(self):
+        plt.figure()
+        plt.plot(np.arange(1, self.nbr_iterations+1), self.costs, label = r'$J(\theta)$')
+        plt.xlabel('Iterations')
+        plt.ylabel(r'$J(\theta)$')
+        plt.title('Cost vs Iterations of The Gradient Descent')
+        plt.legend(loc = 'lower right')
+        
 if __name__ == "__main__":
-    x,y = Generate_Points(0, 50, 100, [3,2,1], 1.5)
+    x,y = Generate_Points(0, 10, 100, [3,2,1], 30)
     Poly_regression = Polynomial_Reression(x, y)
-    Poly_regression.fit(order = 3)
+    Poly_regression.fit(order = 2)
     Poly_regression.plot_line()
+    Poly_regression.plot_cost()
+
