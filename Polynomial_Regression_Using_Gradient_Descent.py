@@ -51,7 +51,7 @@ class Polynomial_Reression :
         
         X = [self.x ** i for i in range(order+1)]
         X = np.column_stack(X)
-        theta = np.random.randn(order+1)
+        theta = np.random.randn(order+1 , 1)
         costs = []
         
         for i in range(self.nbr_iterations):
@@ -65,7 +65,7 @@ class Polynomial_Reression :
             # Update Theta Using Gradient Descent 
             n_samples = len(self.y)
             d_J = np.dot(X.T , errors)
-            theta -= learning_rate * (1/n_samples) * d_J
+            theta -= learning_rate * (1/n_samples) * np.sum(d_J , axis = 1)
             
             # Computing The Cost
             cost = self.compute_cost(X, theta)
@@ -98,9 +98,9 @@ class Polynomial_Reression :
         plt.legend(loc = 'lower right')
         
 if __name__ == "__main__":
-    x,y = Generate_Points(0, 10, 100, [3,2,1], 30)
+    
+    x,y = Generate_Points(0, 10, 100, [3,2,1], 10)
     Poly_regression = Polynomial_Reression(x, y)
     Poly_regression.fit(order = 2)
     Poly_regression.plot_line()
     Poly_regression.plot_cost()
-

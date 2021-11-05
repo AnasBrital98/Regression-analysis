@@ -2,9 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import make_regression
 
-from matplotlib import style
-style.use('default')
-
 x , y = make_regression(n_samples=100 , n_features= 1 , noise=10)
 
 
@@ -14,6 +11,7 @@ our goal is to compute the coefficients Theta[0] and Theta[1] that will fit our 
 Using Least Square Method . 
 
 """
+
 # Calculating The Mean for x and y
 X_mean = np.mean(x)
 Y_mean = np.mean(y)
