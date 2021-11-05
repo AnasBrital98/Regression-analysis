@@ -2,6 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import make_regression
 
+from matplotlib import style
+style.use('default')
+
 x , y = make_regression(n_samples=100 , n_features= 1 , noise=10)
 
 
@@ -30,7 +33,7 @@ Y_estimated = theta_0 + theta_1 * x
 
 plt.figure()
 plt.scatter(x , y , color='blue')
-plt.plot(x , Y_estimated ,label = 'Estimated Value' )
+plt.plot(x , Y_estimated ,"-r" ,label = 'Estimated Value' )
 plt.xlabel('Independent Variable')
 plt.xlabel('dependent Variable')
 plt.title('Linear Regression Using Least Square Method')
