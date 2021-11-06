@@ -52,7 +52,6 @@ class LinearRegression :
         plt.figure()
         plt.scatter(self.x, self.y, color = "blue")
         h = self.compute_hypothesis(self.theta_0 ,self.theta_1, self.x)
-        print('h.shape : ',h.shape)
         plt.plot(self.x , h , "-r" ,label="Regression Line")
         plt.xlabel("independent variable")
         plt.ylabel("dependent variable")
