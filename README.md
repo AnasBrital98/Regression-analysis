@@ -219,7 +219,7 @@ to calculate The coefficients we use The Normal Equation , which is represented 
 but wait a minute before we can use this formula we need to know how it comes , The Explanation of The Normal equation can be described as below : 
 
 <div align="center" >
-<img src="resources/normal_regression_Proof.jpg" width="500" height="300">
+<img src="resources/normal_regression_Proof.jpg" width="800" height="400">
 </div>
 
 
