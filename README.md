@@ -3,11 +3,14 @@
 In this repository you can find everything you need to know about regression analysis, starting with the simple example of linear regression, and ending with the general model which is polynomial regression.
 
 ---
-
 ## Introduction :
 
 Regression analysis is a set of statistical operations to estimate the relationships between a dependent variable (X) and an independent variables (Y).
 The most Simple form of regression analysis is linear regression , where the goal is to  finds a suitable line that will fit our data , but sometimes linear regression is not suitable for the problem, since there is a polynomial relationship between the dependent variable (X) and the independent variables (Y).
+
+<div align="center" >
+<img src="resources/cover.jpg" width="500" height="300">
+</div>
 
 ## Linear Regression :
 Linear Regression Model can be represented Mathematically Using This Formula :
