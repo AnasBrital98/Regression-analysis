@@ -10,8 +10,6 @@ class LinearRegression :
     
     def compute_hypothesis(self , theta_0 , theta_1 , x):
         h = theta_0 + np.dot(x , theta_1)
-        
-        
         return h
     
     def compute_cost(self , theta_0 , theta_1 , x , y):

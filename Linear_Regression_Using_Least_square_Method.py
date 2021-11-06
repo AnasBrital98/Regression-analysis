@@ -4,7 +4,6 @@ from sklearn.datasets import make_regression
 
 x , y = make_regression(n_samples=100 , n_features= 1 , noise=10)
 
-
 """
 Our Linear Model Looks like this :   Y_estimated = theta[0] + theta[1] * x .
 our goal is to compute the coefficients Theta[0] and Theta[1] that will fit our data correctly,
