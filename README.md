@@ -79,7 +79,8 @@ The Least Squares Method Gives us This beautiful line :
 </div>
 
 
-**2. Linear Regression With Gradient descent .**
+**2. Linear Regression With Gradient descent .** 
+
 Gradient descent is a first-order iterative optimization algorithm for finding a local minimum of a differentiable function. The idea is to take repeated steps in the opposite direction of the gradient of the function at the current point .
 
 <div align="center" >
@@ -194,3 +195,282 @@ The Cost Function vs The Iterations of The Gradient Descent :
 </div>
 
 ### Polynomial Regression :
+
+polynomial regression is a form of regression analysis in which the relationship between the independent variable x and the dependent variable y is modelled as an nth degree polynomial in x . The Polynomial Regression Model Mathematically can be described as below :
+
+<div align="center" >
+<img src="resources/poly_regression_math_formula.svg" width="350" height="100">
+</div>
+
+polynomial Regression in a Matrix Representation can be seen like below :
+
+<div align="center" >
+<img src="resources/poly_regression_matrix_representation.svg" width="350" height="200">
+</div>
+
+1. Polynomial Regression Using Ordinary least squares Estimation :
+
+to calculate The coefficients we use The Normal Equation , which is represented as :
+
+<div align="center" >
+<img src="resources/Poly_regression_Normal_equation.svg" width="300" height="100">
+</div>
+
+but wait a minute before we can use this formula we need to know how it comes , The Explanation of The Normal equation can be described as below : 
+
+<div align="center" >
+<img src="resources/normal_regression_Proof.jpg" width="500" height="300">
+</div>
+
+
+The Implementation of Polynomial Regression Using Normal Equation :
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import linalg
+
+
+
+def Generate_Points(start , end , nbr_points , coefficient , noise ):
+    
+    #Creating X 
+    x = np.arange(start , end , (end -start) / nbr_points)
+    
+    #calculating Y
+    y = coefficient[0]
+    for i in range(1 , len(coefficient)) :
+        y += coefficient[i] * x ** i
+    
+    #Adding noise to Y
+    if noise != 0 :
+        y += np.random.normal(-(10 ** noise) , 10**noise , len(x))
+    
+    return x,y
+
+"""
+You can generate Polynomial Points Using The Function Above , or You can Use 
+The Function in Sklearn like this :
+    
+    from sklearn.datasets import make_regression
+    from matplotlib import pyplot
+    x, y = make_regression(n_samples=150, n_features=1, noise=0.2)
+    pyplot.scatter(x,y)
+    pyplot.show()
+
+"""
+
+
+class Polynomial_Reression :
+    
+    def __init__(self , x , y ):
+        self.x = x
+        self.y = y
+    
+    def compute_hypothesis(self , X , theta):
+        hypothesis = np.dot(X , theta)
+        return hypothesis
+    
+    def fit(self , order = 2):
+        
+        X = [self.x ** i for i in range(order+1)]
+        X = np.column_stack(X)
+        
+        theta = linalg.pinv(X.T @ X) @ X.T @ self.y
+        
+        self.X = X
+        self.theta = theta
+            
+    def plot_line(self):
+        plt.figure()
+        plt.scatter(self.x , self.y , color = 'blue')
+        Y_hat = self.compute_hypothesis(self.X , self.theta)
+        plt.plot(self.x , Y_hat , "-r")
+        plt.xlabel("independent variable")
+        plt.ylabel("dependent variable")
+        plt.title("Polynomial Regression Using Normal Equation")
+        plt.show()
+        
+if __name__ == "__main__":
+    x,y = Generate_Points(0, 50, 100, [3,2,1], 1.5)
+    Poly_regression = Polynomial_Reression(x, y)
+    Poly_regression.fit(order = 3)
+    Poly_regression.plot_line()        
+```
+
+Polynomial Regression Using Normal Equation gives us this result :
+
+<div align="center" >
+<img src="resources/Polynomial_regression_Normal_Equation.png" width="500" height="300">
+</div>
+
+1. Polynomial Regression Using Gradient Descent :
+
+Gradient descent is a first-order iterative optimization algorithm for finding a local minimum of a differentiable function. The idea is to take repeated steps in the opposite direction of the gradient of the function at the current point .
+
+<div align="center" >
+<img src="resources/gradient_descent_update_formula.svg" width="300" height="100">
+</div>
+
+in this time we know which Algorithm , we're gonna use for the Optimization process , but wait a minute  **which function we're gonna optimize ?**
+
+Ladies and gentlemen, this function is called the cost function and it is used to measure the difference between the expected value and the real value, we can see it as the function that gives us an idea of how far away the expected value from the real .
+
+in our case the cost function is defined as below :
+
+<div align="center" >
+<img src="resources/cost_function_for_linear_regression.png" width="300" height="80">
+</div>
+
+The Implementation of The Polynomial Regression Using Gradient Descent :
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_regression
+
+def Generate_Points(start , end , nbr_points , coefficient , noise ):
+    
+    #Creating X 
+    x = np.arange(start , end , (end -start) / nbr_points)
+    
+    #calculating Y
+    y = coefficient[0]
+    for i in range(1 , len(coefficient)) :
+        y += coefficient[i] * x ** i
+    
+    #Adding noise to Y
+    if noise != 0 :
+        y += np.random.normal(-(10 ** noise) , 10**noise , len(x))
+    
+    return x,y
+
+"""
+You can generate Polynomial Points Using The Function Above , or You can Use 
+The Function in Sklearn like this :
+    
+    from sklearn.datasets import make_regression
+    from matplotlib import pyplot
+    x, y = make_regression(n_samples=150, n_features=1, noise=0.2)
+    pyplot.scatter(x,y)
+    pyplot.show()
+
+"""
+
+class Polynomial_Reression :
+    
+    def __init__(self , x , y ):
+        self.x = x
+        self.y = y
+    
+    def compute_hypothesis(self , X , theta):
+        hypothesis = np.dot(X , theta)
+        return hypothesis
+    
+    def compute_cost(self , X , theta):
+        hypothesis = self.compute_hypothesis(X, theta)
+        n_samples = len(self.y)
+        error = hypothesis - self.y
+        cost = (1/2 * n_samples) * np.sum((error ) ** 2 )
+        return cost
+    
+    def Standardize_Data(self ,x):
+        return (x - np.mean(x)) / (np.max(x) - np.min(x))
+    
+    def fit(self , order = 2 , epsilon = 10e-3 , nbr_iterations = 1000 , learning_rate = 10e-1):
+        
+        self.order = order
+        self.nbr_iterations = nbr_iterations
+        
+        #X = [self.x ** i for i in range(order+1)]
+        X = []
+        X.append(np.ones(len(self.x)))
+        for i in range(1 , order + 1):
+            X.append(self.Standardize_Data(self.x ** i))
+        
+        X = np.column_stack(X)
+        theta = np.random.randn(order+1)
+        costs = []
+        
+        for i in range(self.nbr_iterations):
+            
+            # Computing The Hypothesis for the current params (theta)
+            hypothesis = self.compute_hypothesis(X, theta)
+            
+            # Computing The Errors
+            errors =  hypothesis - self.y
+            
+            # Update Theta Using Gradient Descent 
+            n_samples = len(self.y)
+            d_J = (1/ n_samples) * np.dot(X.T , errors)
+            theta -= learning_rate *  d_J 
+            
+            # Computing The Cost
+            cost = self.compute_cost(X, theta)
+            costs.append(cost)            
+            
+            # if the current cost less than epsilon stop the gradient Descent
+            
+            if cost < epsilon :
+                break
+            
+        self.costs = costs
+        self.X = X
+        self.theta = theta    
+        
+    def plot_line(self):
+        plt.figure()
+        plt.scatter(self.x , self.y , color = 'blue')
+        
+        # Line for Order 1
+        Y_hat = self.compute_hypothesis(self.X , self.theta)
+        plt.plot(self.x , Y_hat , "-r" , label = 'Order = ' + str(self.order) )
+        
+        # Line for Order 2
+        self.fit(order = 2)
+        Y_hat = self.compute_hypothesis(self.X , self.theta)
+        plt.plot(self.x , Y_hat , "-g" , label = 'Order = ' + str(self.order) )
+        
+        # Line for Order 3
+        self.fit(order = 3)
+        Y_hat = self.compute_hypothesis(self.X , self.theta)
+        plt.plot(self.x , Y_hat , "-m" , label = 'Order = ' + str(self.order) )
+        
+        # Line for Order 4
+        self.fit(order = 4)
+        Y_hat = self.compute_hypothesis(self.X , self.theta)
+        plt.plot(self.x , Y_hat , "-y" , label = 'Order = ' + str(self.order) )
+        
+        plt.xlabel("independent variable")
+        plt.ylabel("dependent variable")
+        plt.title("Polynomial Regression Using Gradient Descent")
+        plt.legend(loc = 'lower right')
+        plt.show()
+        
+    def plot_cost(self):
+        plt.figure()
+        plt.plot(np.arange(1, self.nbr_iterations+1), self.costs, label = r'$J(\theta)$')
+        plt.xlabel('Iterations')
+        plt.ylabel(r'$J(\theta)$')
+        plt.title('Cost vs Iterations of The Gradient Descent')
+        plt.legend(loc = 'lower right')
+        
+if __name__ == "__main__":
+    x,y = Generate_Points(0, 50, 100, [3, 1, 1], 2.3)
+    Poly_regression = Polynomial_Reression(x, y)
+    Poly_regression.fit(order = 1)
+    Poly_regression.plot_line()
+    Poly_regression.plot_cost()
+```
+
+Polynomial Reression Using Gradient Descent gives us this result :
+
+<div align="center" >
+<img src="resources/Polynomial_regression_with_gradient_descent_lines.png" width="400" height="300">
+</div>
+
+The Cost of The Polynomial Reression Using Gradient Descent is :
+
+<div align="center" >
+<img src="resources/Polynomial_regression_with_gradient_descent_cost.png" width="400" height="300">
+</div>
