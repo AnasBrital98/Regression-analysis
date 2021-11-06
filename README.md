@@ -4,12 +4,12 @@ In this repository you can find everything you need to know about regression ana
 
 ---
 
-### Introduction :
+## Introduction :
 
 Regression analysis is a set of statistical operations to estimate the relationships between a dependent variable (X) and an independent variables (Y).
 The most Simple form of regression analysis is linear regression , where the goal is to  finds a suitable line that will fit our data , but sometimes linear regression is not suitable for the problem, since there is a polynomial relationship between the dependent variable (X) and the independent variables (Y).
 
-### Linear Regression :
+## Linear Regression :
 Linear Regression Model can be represented Mathematically Using This Formula :
 
 <div align="center" >
@@ -75,7 +75,7 @@ plt.show()
 The Least Squares Method Gives us This beautiful line :
 
 <div align="center" >
-<img src="resources/Linear_Regression_Using_Least_Square_Method.png" width="300" height="200">
+<img src="resources/Linear_Regression_Using_Least_Square_Method.png" width="500" height="300">
 </div>
 
 
@@ -185,16 +185,16 @@ if __name__ == "__main__" :
 The Gradient descent Gives us This Result , which very good actually :
 
 <div align="center" >
-<img src="resources/Linear_Regression_Using_GradientDescent_Line.png" width="300" height="200">
+<img src="resources/Linear_Regression_Using_GradientDescent_Line.png" width="500" height="300">
 </div>
 
 The Cost Function vs The Iterations of The Gradient Descent :
 
 <div align="center" >
-<img src="resources/Linear_Regression_Using_GradientDescent_Cost.png" width="300" height="200">
+<img src="resources/Linear_Regression_Using_GradientDescent_Cost.png" width="500" height="300">
 </div>
 
-### Polynomial Regression :
+## Polynomial Regression :
 
 polynomial regression is a form of regression analysis in which the relationship between the independent variable x and the dependent variable y is modelled as an nth degree polynomial in x . The Polynomial Regression Model Mathematically can be described as below :
 
@@ -466,11 +466,21 @@ if __name__ == "__main__":
 Polynomial Reression Using Gradient Descent gives us this result :
 
 <div align="center" >
-<img src="resources/Polynomial_regression_with_gradient_descent_lines.png" width="400" height="300">
+<img src="resources/Polynomial_regression_with_gradient_descent_lines.png" width="500" height="300">
 </div>
 
 The Cost of The Polynomial Reression Using Gradient Descent is :
 
 <div align="center" >
-<img src="resources/Polynomial_regression_with_gradient_descent_cost.png" width="400" height="300">
+<img src="resources/Polynomial_regression_with_gradient_descent_cost.png" width="500" height="300">
 </div>
+
+## References :
+
+* [Linear Regression by Wikipedia](https://en.wikipedia.org/wiki/Linear_regression) .
+* [Ordinary least squares by Wikipedia](https://en.wikipedia.org/wiki/Ordinary_least_squares) .
+* [Least squares by Wikipedia](https://en.wikipedia.org/wiki/Least_squares) .
+* [Gradient Descent By Wikipedia](https://en.wikipedia.org/wiki/Gradient_descent) .
+* [Polynomial Regression by Wikipedia](https://en.wikipedia.org/wiki/Polynomial_regression) .
+* Forgive me guys if I make some typos, my English is not very good, I'm doing my best .
+* and finally a special Thanks to Wikipedia team for the Amazing work they doing ❤️. 
