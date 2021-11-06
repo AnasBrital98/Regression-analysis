@@ -216,14 +216,19 @@ to calculate The coefficients we use The Normal Equation , which is represented 
 <img src="resources/Poly_regression_Normal_equation.svg" width="300" height="100">
 </div>
 
-but wait a minute before we can use this formula we need to know how it comes , The Explanation of The Normal equation can be described as below : 
+but wait a minute before we can use this formula we need to know how it comes , The Explanation of The Normal equation can be described as below (you can find a pdf file containing the Explanation in The resources Folder ): 
 
 <div align="center" >
-<img src="resources/normal_regression_Proof.jpg" width="800" height="400">
+<img src="resources/Explanation1.jpeg" width="500" height="700">
+</div>
+
+<div align="center" >
+<img src="resources/Explanation2.jpeg" width="500" height="700">
 </div>
 
 
-The Implementation of Polynomial Regression Using Normal Equation :
+
+**The Implementation of Polynomial Regression Using Normal Equation :**
 
 ```python
 import numpy as np
