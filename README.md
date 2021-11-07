@@ -211,7 +211,7 @@ polynomial Regression in a Matrix Representation can be seen like below :
 <img src="resources/poly_regression_matrix_representation.svg" width="350" height="200">
 </div>
 
-1. Polynomial Regression Using Ordinary least squares Estimation :
+**1. Polynomial Regression Using Ordinary least squares Estimation :**
 
 to calculate The coefficients we use The Normal Equation , which is represented as :
 
@@ -231,7 +231,7 @@ but wait a minute before we can use this formula we need to know how it comes , 
 
 
 
-**The Implementation of Polynomial Regression Using Normal Equation :**
+he Implementation of Polynomial Regression Using Normal Equation :
 
 ```python
 import numpy as np
@@ -312,7 +312,7 @@ Polynomial Regression Using Normal Equation gives us this result :
 <img src="resources/Polynomial_regression_Normal_Equation.png" width="500" height="300">
 </div>
 
-1. Polynomial Regression Using Gradient Descent :
+**2. Polynomial Regression Using Gradient Descent :**
 
 Gradient descent is a first-order iterative optimization algorithm for finding a local minimum of a differentiable function. The idea is to take repeated steps in the opposite direction of the gradient of the function at the current point .
 
@@ -491,4 +491,4 @@ The Cost of The Polynomial Reression Using Gradient Descent is :
 * [Gradient Descent By Wikipedia](https://en.wikipedia.org/wiki/Gradient_descent) .
 * [Polynomial Regression by Wikipedia](https://en.wikipedia.org/wiki/Polynomial_regression) .
 * Forgive me guys if I make some typos, my English is not very good, I'm doing my best .
-* and finally a special Thanks to Wikipedia team for the Amazing work they doing ❤️. 
+* and finally a special Thanks to Wikipedia team for the Amazing work they are doing ❤️. 
