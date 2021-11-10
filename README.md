@@ -29,7 +29,25 @@ Least Squares Method Estimate the Parameters alpha and beta Using This Simple Fo
 
 
 <div align="center" >
-<img src="resources/Least_square_estimation_formula.svg" width="400" height="100">
+<img src="resources/Least_square_estimation_formula.png" width="350" height="100">
+</div>
+
+but wait a minute before we can use this formula we need to know how it comes , The Explanation of The Normal equation can be described as below :
+
+<div align="center" >
+<img src="resources/page_1.jpg" width="500" height="700">
+</div>
+
+<div align="center" >
+<img src="resources/page_2.jpg" width="500" height="700">
+</div>
+
+<div align="center" >
+<img src="resources/page_3.jpg" width="500" height="700">
+</div>
+
+<div align="center" >
+<img src="resources/page_4.jpg" width="500" height="700">
 </div>
 
 The Implementation of Linear Regression with Least Squares in Python :
