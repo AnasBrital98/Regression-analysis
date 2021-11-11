@@ -501,6 +501,9 @@ The Cost of The Polynomial Reression Using Gradient Descent is :
 <img src="resources/Polynomial_regression_with_gradient_descent_cost.png" width="500" height="300">
 </div>
 
+
+## Contribution :
+If you would like to contribute to this work, it would be very good to write the proofs in latex.
 ## References :
 
 * [Linear Regression by Wikipedia](https://en.wikipedia.org/wiki/Linear_regression) .
@@ -508,5 +511,5 @@ The Cost of The Polynomial Reression Using Gradient Descent is :
 * [Least squares by Wikipedia](https://en.wikipedia.org/wiki/Least_squares) .
 * [Gradient Descent By Wikipedia](https://en.wikipedia.org/wiki/Gradient_descent) .
 * [Polynomial Regression by Wikipedia](https://en.wikipedia.org/wiki/Polynomial_regression) .
-* Forgive me guys if I make some typos, my English is not very good, I'm doing my best .
+* Forgive me guys if I made some typos, I'm doing my best .
 * and finally a special Thanks to Wikipedia team for the Amazing work they are doing ❤️. 
